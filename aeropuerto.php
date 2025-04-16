@@ -53,6 +53,48 @@ class Aeropuerto {
 
         return $vuelosAsignados;
     }
+    public function ventaAutomatica($cant_asientos, $pFecha, $pDestino) {
+
+        $coleccionAerolineas = $this->getColeccionAerolineas();
+        $vuelosDisponibles = $coleccionAerolineas->getVuelosProgramados();
+        $cant_vuelos = count($vuelosDisponibles);
+        $i= 0;
+        $vueloVendido = false;
+
+        while (!$vueloVendido && $i < $cant_vuelos) {
+
+            $vueloAEvaluar = $vuelosDisponibles[$i];
+            $asientosDisponibles = $vueloAEvaluar->getAsientosDisponibles();
+            $fecha = $vueloAEvaluar->getFecha();
+            $destino = $vueloAEveluar->getDestino();
+
+            if ($cant_asientos<=$asientosDisponibles && $pFecha == $fecha && $destino == $pDestino) { 
+                $vueloAEvaluar->asignarAsientosDisponibles($cant_asientos);
+            }
+        }
+    }
+
+    public function promedioRecaudadoXAerolinea($aerolinea){
+        $coleAerolineas = getColeccionAerolineas();
+        $encontrada = false;
+        $importe = 0;
+        $cant = 0;
+        $promedio = 0;
+
+        while($i<$cantAerolineas && !$encontrada){
+            $denomiacion = $coleAerolineas[$i]->getDenominacion;
+            if ($denominacion == $aerolinea) {
+                $encontrada=true;
+                $vuelosAerolinea = aerolinea->getVuelosProgramados;
+                foreach ($vuelosAerolonea as $vuelo){
+                    $importe = $importe + $vuelo->getImporte(); 
+                    $cant++;
+                }
+            }
+        }
+        $promedio = $importe / $cant;
+        return $promedio;
+    }
 
     public function __toString() {
 
