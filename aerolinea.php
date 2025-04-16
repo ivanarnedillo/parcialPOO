@@ -108,6 +108,20 @@ class Aerolinea {
 
 
     }
+public function __toString() {
 
+        $cadenaAerolineas = "";
+        $coleccionAerolineas = $this->getColeccionAerolineas();
+
+        foreach ($coleccionAerolineas as $aerolinea) {
+            $cadenaAerolineas .= $aerolinea . "\n";
+        }
+
+        return "Denominacion: " . $this->getDenominacion() . ". \n " .
+               "Direccion " . $this->getDireccion() . ". \n " .
+               "Aerolineas ". $cadenaAerolineas . ". \n " ;
+    }
+
+}
 
 
